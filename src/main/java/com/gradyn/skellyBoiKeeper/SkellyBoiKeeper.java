@@ -13,13 +13,10 @@ public final class SkellyBoiKeeper extends JavaPlugin {
     public static StateFlag KEEP_SKELLYBOIS_FLAG;
 
     @Override
-    public void onEnable() {
-        getServer().getPluginManager().registerEvents(new EntitySpawnEventListener(), this);
-        getServer().getPluginManager().registerEvents(new EntityMoveEventListener(), this);
-
+    public void onLoad() {
         FlagRegistry registry = WorldGuard.getInstance().getFlagRegistry();
         try {
-            StateFlag flag = new StateFlag("keep-skellybois", true);
+            StateFlag flag = new StateFlag("keep-skellybois", false);
             registry.register(flag);
             KEEP_SKELLYBOIS_FLAG = flag;
         } catch (FlagConflictException e) {
@@ -33,7 +30,8 @@ public final class SkellyBoiKeeper extends JavaPlugin {
     }
 
     @Override
-    public void onDisable() {
-        // Plugin shutdown logic
+    public void onEnable() {
+        getServer().getPluginManager().registerEvents(new EntitySpawnEventListener(), this);
+        getServer().getPluginManager().registerEvents(new EntityMoveEventListener(), this);
     }
 }
