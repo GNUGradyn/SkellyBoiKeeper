@@ -10,7 +10,7 @@ import org.bukkit.event.Listener;
 import static com.gradyn.skellyBoiKeeper.SkellyBoiKeeper.KEEP_SKELLYBOIS_FLAG;
 
 public class EntityMoveEventListener implements Listener {
-    @EventHandler
+    @EventHandler(ignoreCancelled = true)
     public void EntityMoveEventHandler(EntityMoveEvent event) {
         if (event.getEntityType() != EntityType.WITHER_SKELETON) return;
 
@@ -21,11 +21,9 @@ public class EntityMoveEventListener implements Listener {
 
         WitherSkeleton entity = (WitherSkeleton) event.getEntity();
 
-        boolean isInFarm = WorldguardLocationCheckHelper.CheckLocationForFlag(event.getTo(), KEEP_SKELLYBOIS_FLAG);
-        boolean removeWhenFarAway = entity.getRemoveWhenFarAway();
+        boolean isInFarm = WorldguardLocationCheckHelper.checkLocationForFlag(event.getTo(), KEEP_SKELLYBOIS_FLAG);
 
-        if (isInFarm == removeWhenFarAway)
-            entity.setRemoveWhenFarAway(!removeWhenFarAway);
+        entity.setRemoveWhenFarAway(!isInFarm);
     }
 
 }
