@@ -1,0 +1,6 @@
+name: 'SkellyBoiKeeper'
+version: '1.0-SNAPSHOT'
+main: com.gradyn.skellyBoiKeeper.SkellyBoiKeeper
+api-version: '1.21.8'
+author: 'Gradyn Wursten'
+depend: [WorldGuard]
