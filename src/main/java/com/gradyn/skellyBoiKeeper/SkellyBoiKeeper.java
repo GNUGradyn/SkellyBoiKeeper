@@ -1,5 +1,6 @@
 package com.gradyn.skellyBoiKeeper;
 
+import com.gradyn.skellyBoiKeeper.Events.EntityMoveEventListener;
 import com.gradyn.skellyBoiKeeper.Events.EntitySpawnEventListener;
 import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.protection.flags.Flag;
@@ -14,6 +15,7 @@ public final class SkellyBoiKeeper extends JavaPlugin {
     @Override
     public void onEnable() {
         getServer().getPluginManager().registerEvents(new EntitySpawnEventListener(), this);
+        getServer().getPluginManager().registerEvents(new EntityMoveEventListener(), this);
 
         FlagRegistry registry = WorldGuard.getInstance().getFlagRegistry();
         try {
